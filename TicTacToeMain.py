@@ -13,12 +13,17 @@ def display_grid(grid):
     print(' ' + grid[1] + ' | ' + grid[2] + ' | ' + grid[3])
     print('   |   |')
 
-def user_input():
+def user_input(grid):
     while True:
         next_move = input("Where yo you want to play your next move? 1-9")
-        if next_move.isdigit() and int(next_move) in range(1, 10):
-            return int(next_move)
-        print("Please enter a number between 1 and 9.")
+        if not (next_move.isdigit() and int(next_move) in range(1, 10)):
+            print("Please enter a number between 1 and 9.")
+            continue
+        next_move = int(next_move)
+        if grid[next_move] != ' ':
+            print("That spot is already taken.")
+            continue
+        return next_move
 
 def win_check(grid,mark):
     
@@ -45,10 +50,10 @@ if ready.lower() == "yes":
 while ready == True:
     display_grid(grid)
     if count % 2 == 0:
-        grid[user_input()] = 'X'
+        grid[user_input(grid)] = 'X'
         XorO = 'X'
     else:
-        grid[user_input()] = 'O'
+        grid[user_input(grid)] = 'O'
         XorO = 'O'
 
     if win_check(grid,XorO) == True:
