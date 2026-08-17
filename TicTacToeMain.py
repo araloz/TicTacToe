@@ -36,6 +36,9 @@ def win_check(grid,mark):
     (grid[7] == mark and grid[5] == mark and grid[3] == mark) or # diagonal
     (grid[9] == mark and grid[5] == mark and grid[1] == mark)) # diagonal
 
+def board_full(grid):
+    return ' ' not in grid[1:]
+
 def reset_grid(grid):
     grid = [' ',' ',' ',' ',' ',' ',' ',' ',' ',' ']
     return grid
@@ -58,13 +61,22 @@ while ready == True:
 
     if win_check(grid,XorO) == True:
         display_grid(grid)
+        print(XorO + " wins!")
         play_again = input("Do you want to play again? Yes/No")
         if play_again.lower() == "no":
             ready = False
         else:
             grid = reset_grid(grid)
             count = -1
-        
+    elif board_full(grid):
+        display_grid(grid)
+        print("It's a draw!")
+        play_again = input("Do you want to play again? Yes/No")
+        if play_again.lower() == "no":
+            ready = False
+        else:
+            grid = reset_grid(grid)
+            count = -1
 
 
     count += 1
