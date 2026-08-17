@@ -57,8 +57,8 @@ while ready == True:
         if play_again.lower() == "no":
             ready = False
         else:
-            #grid = [' ',' ',' ',' ',' ',' ',' ',' ',' ',' ']
             grid = reset_grid(grid)
+            count = -1
         
 
 
