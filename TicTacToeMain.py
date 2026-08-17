@@ -25,6 +25,14 @@ def user_input(grid):
             continue
         return next_move
 
+def play_again_input():
+    while True:
+        play_again = input("Do you want to play again? Yes/No")
+        if play_again.lower() not in ["yes", "no"]:
+            print("Please enter 'Yes' or 'No'.")
+            continue
+        return play_again.lower()
+
 def win_check(grid,mark):
     
     return ((grid[7] == mark and grid[8] == mark and grid[9] == mark) or # across the top
@@ -62,19 +70,19 @@ while ready:
     if win_check(grid,XorO):
         display_grid(grid)
         print(XorO + " wins!")
-        play_again = input("Do you want to play again? Yes/No")
-        if play_again.lower() == "no":
+        play_again = play_again_input()
+        if play_again == "no":
             ready = False
-        else:
+        elif play_again == "yes":
             grid = reset_grid(grid)
             count = -1
     elif board_full(grid):
         display_grid(grid)
         print("It's a draw!")
-        play_again = input("Do you want to play again? Yes/No")
-        if play_again.lower() == "no":
+        play_again = play_again_input()
+        if play_again == "no":
             ready = False
-        else:
+        elif play_again == "yes":
             grid = reset_grid(grid)
             count = -1
 
