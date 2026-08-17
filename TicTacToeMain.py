@@ -15,7 +15,7 @@ def display_grid(grid):
 
 def user_input(grid):
     while True:
-        next_move = input("Where yo you want to play your next move? 1-9")
+        next_move = input("Where do you want to play your next move? 1-9")
         if not (next_move.isdigit() and int(next_move) in range(1, 10)):
             print("Please enter a number between 1 and 9.")
             continue
@@ -50,7 +50,7 @@ count = 0
 if ready.lower() == "yes":
     ready = True
 
-while ready == True:
+while ready:
     display_grid(grid)
     if count % 2 == 0:
         grid[user_input(grid)] = 'X'
@@ -59,7 +59,7 @@ while ready == True:
         grid[user_input(grid)] = 'O'
         XorO = 'O'
 
-    if win_check(grid,XorO) == True:
+    if win_check(grid,XorO):
         display_grid(grid)
         print(XorO + " wins!")
         play_again = input("Do you want to play again? Yes/No")
